@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  export_poc:
+    container_name: export_poc
+    image: export_poc
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    environment:
+      DB_DRIVER: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: export_poc
+      DB_MAX_IDLE_CONNS: 4
+      MIGRATE_PATH: file://database/migrations
+      GRAPHQL_PORT: 8080
+    networks:
+      - export_poc
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14.2-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASES=export_poc
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - export_poc
+
+volumes:
+  postgres:
+    driver: local
+
+networks:
+  export_poc:
+    driver: bridge
