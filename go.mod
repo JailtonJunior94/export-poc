@@ -3,10 +3,10 @@ module github.com/jailtonjunior94/export-poc
 go 1.19
 
 require (
-	github.com/360EntSecGroup-Skylar/excelize v1.4.1
 	github.com/golang-migrate/migrate/v4 v4.16.2
 	github.com/lib/pq v1.10.9
 	github.com/spf13/viper v1.16.0
+	github.com/xuri/excelize/v2 v2.7.1
 )
 
 require (
@@ -26,7 +26,6 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/xuri/efp v0.0.0-20220603152613-6918739fd470 // indirect
-	github.com/xuri/excelize/v2 v2.7.1 // indirect
 	github.com/xuri/nfp v0.0.0-20220409054826-5e722a1d9e22 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
