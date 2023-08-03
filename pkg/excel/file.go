@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/360EntSecGroup-Skylar/excelize"
+	"github.com/xuri/excelize/v2"
 )
 
 type File interface {
@@ -28,7 +28,7 @@ func newFile(xls *excelize.File) File {
 }
 
 func (f *file) NewSheet(ctx context.Context, name string) Sheet {
-	numSheet := f.xls.NewSheet(name)
+	numSheet, _ := f.xls.NewSheet(name)
 	return newSheet(name, numSheet, f.xls)
 }
 

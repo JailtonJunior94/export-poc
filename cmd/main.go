@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"time"
 
 	"github.com/jailtonjunior94/export-poc/configs"
 	"github.com/jailtonjunior94/export-poc/internal/entities"
@@ -13,6 +14,8 @@ import (
 )
 
 func main() {
+	now := time.Now()
+
 	config, err := configs.LoadConfig(".")
 	if err != nil {
 		panic(err)
@@ -55,11 +58,11 @@ func main() {
 		}
 	}
 
-	buffer, err := xls.WriteToBuffer(ctx)
+	_, err = xls.WriteToBuffer(ctx)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(buffer)
+	fmt.Println("Duration: ", time.Since(now))
 
 	// category := entities.Category{
 	// 	ID:          uuid.New().String(),
